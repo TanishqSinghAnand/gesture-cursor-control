@@ -27,7 +27,8 @@ wScreen, hScreen = autopy.screen.size()
 
 while True:
     success, img = cap.read()
-    cv2.flip(img,1)
+    # cv2.flip(img,1)
+    cv2.flip(img,0)
     img = detector.findHands(img)
     lmList, bbox = detector.findPosition(img)
 
@@ -61,7 +62,7 @@ while True:
                 cv2.circle(img, (lineInfo[4], lineInfo[5]),
                            15, (0, 255, 0), cv2.FILLED)
                 autopy.mouse.click()
-
+    img = cv2.flip(img,1)
     cv2.imshow("Image", img)
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
